@@ -1,0 +1,29 @@
+const Projects = require('../Models/project');
+
+exports.getProject = async (req, res) => {
+    try {
+        let response = await Projects.getProject(req(param('id')));
+        res.status(200).json(response.rows[0]);
+    } catch(err) {
+        res.status(500).json(err);
+    }
+}
+
+exports.createProject = async (req, res) => {
+    const project = req.body.project;
+    try {
+        let response = await Projects.createProject(project);
+        res.status(200).json(response.rows[0])
+    } catch (err) {
+        res.status(500).json(err)
+    }
+};
+
+exports.deleteProject = async (req, res) => {
+    try {
+        let response = await Projects.deleteProject(req.param('id'));
+        res.status(200).json(response)
+    } catch (err) {
+        res.status(500).json(err)
+    }
+}
